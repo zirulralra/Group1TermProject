@@ -143,7 +143,7 @@ public class MultiChatController implements Runnable {
 
                 if (m.getType().equals("server")) {
                     v.nameOut.setModel(v.nameOutModel);
-                    v.contactLabel.setText("접속자   " + people + "명");
+                    //v.contactLabel.setText("접속자   " + people + "명");
                     chatData.refreshData(m.getId() + "" + m.getMsg() + "\n");
                 } else if (m.getType().equals("s_secret")) {
                     chatData.refreshData(m.getId() + "→" + m.getRcvid() + " : " + m.getMsg() + "               " + time_sdf.format(date) + "\n");

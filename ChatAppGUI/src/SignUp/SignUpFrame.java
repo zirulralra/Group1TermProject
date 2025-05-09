@@ -10,7 +10,12 @@ public class SignUpFrame extends JFrame {
         setLocationRelativeTo(null);
 
         add(new SignUpPanel());
-
+        pack();
+        setSize(400, 500);
+        
+        setResizable(false);
         setVisible(true);
+
+
     }
 }

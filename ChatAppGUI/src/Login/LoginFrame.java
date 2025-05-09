@@ -10,7 +10,12 @@ public class LoginFrame extends JFrame {
         setLocationRelativeTo(null); // 가운데 정렬
 
         add(new LoginPanel());
+        pack();
+        setSize(400, 500);
 
+        setResizable(false);
         setVisible(true);
+
+
     }
 }
