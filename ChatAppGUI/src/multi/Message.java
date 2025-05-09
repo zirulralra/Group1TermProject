@@ -1,5 +1,6 @@
 package multi;
-import javax.swing.DefaultListModel;
+
+import java.util.List;
 
 public class Message {
 	private String id;
@@ -7,12 +8,12 @@ public class Message {
 	private String msg;
 	private String type;
 	private String rcvid;
-	private DefaultListModel<String> check;
+	private List<String> check;
 	private int people;
 	
 	public Message() {}
 	
-	public Message(String id, String passwd, String msg, String type, String rcvid, DefaultListModel<String> check, int people){
+	public Message(String id, String passwd, String msg, String type, String rcvid, List<String> check, int people){
 		this.id = id;
 		this.passwd = passwd;
 		this.msg = msg;
@@ -57,10 +58,10 @@ public class Message {
 		this.rcvid = rcvid;
 	}
 	
-	public DefaultListModel<String> getCheck() {
+	public List<String> getCheck() {
 		return check;
 	}
-	public void setCheck(DefaultListModel<String> check) {
+	public void setCheck(List<String> check) {
 		this.check = check;
 	}
 	
@@ -70,5 +71,4 @@ public class Message {
 	public void setPeople(int people) {
 		this.people = people;
 	}
-	
 }

@@ -25,28 +25,14 @@ public class LoginPanel extends JPanel {
 
         loginButton = new JButton("로그인");
         joinButton = new JButton("회원가입");
-        
-        add(idLabel);
-        add(idField);
-        add(pwLabel);
-        add(pwField);
-        add(new JLabel()); // 공백
-        add(loginButton);
+
+        add(idLabel); add(idField);
+        add(pwLabel); add(pwField);
+        add(new JLabel()); add(loginButton);
+        add(new JLabel()); add(new JLabel());
+        add(new JLabel()); add(joinButton);
 
         loginButton.addActionListener(new LoginController(idField, pwField));
-
-        
-        add(loginButton);
-        
-        add(new JLabel()); // 공백
-        add(new JLabel()); // 공백
-        add(new JLabel()); // 공백
-        
-        add(joinButton);
-     
-        // 버튼 이벤트 등록
-        loginButton.addActionListener(new LoginController(idField, pwField));
-        joinButton.addActionListener(e -> new SignUpFrame()); // 새 창 열기
-
+        joinButton.addActionListener(e -> new SignUpFrame());
     }
 }

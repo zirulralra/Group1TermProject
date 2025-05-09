@@ -9,7 +9,9 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.swing.DefaultListModel;
@@ -192,7 +194,8 @@ public class MultiChatServer extends JFrame implements ActionListener
 						people = userList.size();
 						
 						s_msgOut.append("사용자 "+m.getId()+" 로그아웃했습니다.\n");
-						msgSendAll(gson.toJson(new Message(m.getId(),"","님이 로그아웃했습니다.","server", "all", user, people)));
+						List<String> userListForMsg = Collections.list(user.elements());
+						msgSendAll(gson.toJson(new Message(m.getId(),"","님이 로그아웃했습니다.","server", "all", userListForMsg, people)));
 						// 해당 클라이언트 스레드 종료로 인해 status 를 false 로 설정
 						status = false;
 					}
@@ -213,7 +216,8 @@ public class MultiChatServer extends JFrame implements ActionListener
 						
 						people = userList.size();
 						
-						msgSendAll(gson.toJson(new Message(m.getId(),"","님이 로그인했습니다.","server", "all", user, people)));
+						List<String> userListForMsg = Collections.list(user.elements());
+						msgSendAll(gson.toJson(new Message(m.getId(),"","님이 로그인했습니다.","server", "all", userListForMsg, people)));
 						System.out.println(msg);
 						s_msgOut.append("사용자 "+m.getId()+" 로그인했습니다.\n");
 					}
@@ -222,7 +226,8 @@ public class MultiChatServer extends JFrame implements ActionListener
 						int numS = user.indexOf(m.getId());
 						int numR = user.indexOf(m.getRcvid());
 						System.out.println("numS : "+numS+"\tnumR : "+numR);
-						msgSendWho(gson.toJson(new Message(m.getId(),"", m.getMsg(),"s_secret", m.getRcvid(), user, people)), numS, numR);
+						List<String> userListForMsg = Collections.list(user.elements());
+						msgSendWho(gson.toJson(new Message(m.getId(), "", m.getMsg(), "s_secret", m.getRcvid(), userListForMsg, people)), numS, numR);
 						System.out.println(msg);
 						s_msgOut.append("(귓속말)" + m.getId() + "→" + m.getRcvid() + " : " + m.getMsg()+"\n");
 					}

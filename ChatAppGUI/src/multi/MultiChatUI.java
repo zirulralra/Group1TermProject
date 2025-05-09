@@ -31,15 +31,6 @@ public class MultiChatUI extends JFrame
 	protected JButton sendButton;
 	
 	protected JLabel userLabel;
-	protected JTextField idInput;
-	protected JPanel loginPanel;
-	protected JButton loginButton;
-	protected JLabel idOutLabel;
-	protected JPanel logoutPanel;
-	protected JButton logoutButton;
-	
-	protected Container tab;
-	protected CardLayout cardLayout;
 	
 	protected JLabel contactLabel;
 	protected DefaultListModel<String> nameOutModel;
@@ -51,13 +42,14 @@ public class MultiChatUI extends JFrame
 	protected JButton exitButton;
 	
 	protected static String id;
+	private String userId;
 	
-	public MultiChatUI()
-	{
-		super(" 멀티챗 ☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆");
-		init();
-		this.setResizable(false);
-	}
+	public MultiChatUI(String userId) {
+        super(userId + "님의 멀티챗방 ☆.。.:*・°☆");
+        this.id = userId;
+        init();
+        this.setResizable(false);
+    }
 	
 	private void init()
 	{
@@ -101,49 +93,6 @@ public class MultiChatUI extends JFrame
 		userLabel.setFont(new Font("a시네마M", Font.PLAIN, 13));
 		userLabel.setBounds(374, 10, 116, 15);
 		contentPane.add(userLabel);
-
-		loginPanel = new JPanel();
-		loginPanel.setBackground(new Color(230, 230, 250));
-		loginPanel.setBounds(374, 28, 116, 46);
-		//contentPane.add(loginPanel);
-		loginPanel.setLayout(null);
-		
-		idInput = new JTextField();
-		idInput.setFont(new Font("a시네마M", Font.PLAIN, 12));
-		idInput.setBounds(0, 0, 116, 21);
-		idInput.setColumns(10);
-		loginPanel.add(idInput);
-		
-		loginButton = new JButton("로그인");
-		loginButton.setFont(new Font("a시네마M", Font.PLAIN, 12));
-		loginButton.setBounds(0, 23, 116, 23);
-		loginPanel.add(loginButton);
-		
-		logoutPanel = new JPanel();
-		logoutPanel.setBackground(new Color(230, 230, 250));
-		logoutPanel.setBounds(374, 28, 116, 46);
-		//contentPane.add(logoutPanel);
-		logoutPanel.setLayout(null);
-
-		idOutLabel = new JLabel();
-		idOutLabel.setFont(new Font("a시네마M", Font.PLAIN, 12));
-		idOutLabel.setBounds(0, 0, 116, 21);
-		logoutPanel.add(idOutLabel);
-		
-		logoutButton = new JButton("로그아웃");
-		logoutButton.setFont(new Font("a시네마M", Font.PLAIN, 12));
-		logoutButton.setBounds(0, 23, 116, 23);
-		logoutPanel.add(logoutButton);
-
-		tab = new JPanel();
-		cardLayout = new CardLayout(0, 0);
-		
-		tab.setLayout(cardLayout);
-		tab.add(loginPanel, "login");
-		tab.add(logoutPanel, "logout");
-		
-		add(tab);
-		tab.setBounds(374, 28, 116, 46);
 		
 		contactLabel = new JLabel(" ~ 접속자 ~");
 		contactLabel.setFont(new Font("a시네마M", Font.PLAIN, 13));
@@ -176,16 +125,12 @@ public class MultiChatUI extends JFrame
 		deleteButton.setBounds(374, 282, 116, 23);
 		contentPane.add(deleteButton);
 		
-		cardLayout.show(tab, "login");
-		
 		setResizable(false);
 		setVisible(true);  // true여야 화면에 보임.
 	}
 	
 	public void addButtonActionListener(ActionListener listener)
 	{
-		loginButton.addActionListener(listener);
-		logoutButton.addActionListener(listener);
 		sendButton.addActionListener(listener);
 		deleteButton.addActionListener(listener);
 		exitButton.addActionListener(listener);
@@ -193,10 +138,6 @@ public class MultiChatUI extends JFrame
 	
 	public void addEnterKeyListener(KeyListener listener)
 	{
-		idInput.addKeyListener(listener);
-		loginButton.addKeyListener(listener);
-		logoutButton.addKeyListener(listener);
-		msgInput.addKeyListener(listener);
 		sendButton.addKeyListener(listener);
 		deleteButton.addKeyListener(listener);
 		exitButton.addKeyListener(listener);
