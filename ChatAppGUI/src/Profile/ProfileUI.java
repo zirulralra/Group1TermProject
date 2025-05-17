@@ -16,7 +16,6 @@ public class ProfileUI extends JFrame {
     private JTextArea bioArea;
     private JButton saveButton;
     private JButton cancelButton;
-    private JLabel profileImageLabel;
     
     private String userId;
     private ProfileManager profileManager;
@@ -27,7 +26,7 @@ public class ProfileUI extends JFrame {
         this.profileManager = ProfileManager.getInstance();
         
         setTitle(userId + "님의 프로필");
-        setSize(400, 450);
+        setSize(400, 400);  // 이미지 영역이 제거되어 높이 감소
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -58,44 +57,6 @@ public class ProfileUI extends JFrame {
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         centerPanel.setBackground(Color.WHITE);
-        
-        // Profile image panel
-        JPanel imagePanel = new JPanel();
-        imagePanel.setBackground(Color.WHITE);
-        imagePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
-        // Placeholder for profile image
-        ImageIcon defaultIcon = new ImageIcon(getClass().getResource("/img/default_profile.png"));
-        if (defaultIcon.getIconWidth() == -1) {
-            // If image doesn't exist, create a placeholder circle
-            profileImageLabel = new JLabel() {
-                @Override
-                protected void paintComponent(Graphics g) {
-                    super.paintComponent(g);
-                    Graphics2D g2d = (Graphics2D) g.create();
-                    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                    g2d.setColor(THEME_COLOR);
-                    g2d.fillOval(0, 0, 80, 80);
-                    g2d.setColor(Color.WHITE);
-                    g2d.setFont(new Font("SansSerif", Font.BOLD, 32));
-                    String initial = String.valueOf(userId.charAt(0)).toUpperCase();
-                    FontMetrics fm = g2d.getFontMetrics();
-                    int stringWidth = fm.stringWidth(initial);
-                    int stringHeight = fm.getHeight();
-                    g2d.drawString(initial, (80 - stringWidth) / 2, 40 + stringHeight / 4);
-                    g2d.dispose();
-                }
-            };
-            profileImageLabel.setPreferredSize(new Dimension(80, 80));
-        } else {
-            // Use the image if it exists
-            Image img = defaultIcon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-            profileImageLabel = new JLabel(new ImageIcon(img));
-        }
-        
-        imagePanel.add(profileImageLabel);
-        centerPanel.add(imagePanel);
-        centerPanel.add(Box.createVerticalStrut(15));
         
         // Nickname panel
         JPanel nicknamePanel = new JPanel();
