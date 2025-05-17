@@ -37,5 +37,11 @@ public class UserDatabase {
         return false;
     }
 
-    
+    /**
+     * Get all registered users
+     * @return ArrayList of all users
+     */
+    public ArrayList<User> getAllUsers() {
+        return new ArrayList<>(users); // Return a copy to prevent external modification
+    }
 }
