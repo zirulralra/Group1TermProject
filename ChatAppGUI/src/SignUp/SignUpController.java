@@ -33,7 +33,8 @@ public class SignUpController implements ActionListener {
             return;
         }
         
+        // 비밀번호는 User 객체 생성 시 암호화됨
         UserDatabase.shared().addUser(new User(id, pw));
-        JOptionPane.showMessageDialog(null, "회원가입 완료!");
+        JOptionPane.showMessageDialog(null, "회원가입 완료! 비밀번호가 암호화되어 저장되었습니다.");
     }
 }

@@ -48,6 +48,14 @@ public class SignUpPanel extends JPanel {
         btnPanel.setBackground(Color.WHITE);
         btnPanel.add(signUpButton);
         add(btnPanel);
+        
+        // 비밀번호 보안 안내 메시지
+        JLabel securityInfo = new JLabel("* 비밀번호는 암호화되어 안전하게 저장됩니다");
+        securityInfo.setFont(new Font("SansSerif", Font.ITALIC, 11));
+        securityInfo.setForeground(Color.GRAY);
+        securityInfo.setAlignmentX(CENTER_ALIGNMENT);
+        add(Box.createVerticalStrut(10));
+        add(securityInfo);
     }
 
     private void handleSignUp() {
@@ -71,8 +79,9 @@ public class SignUpPanel extends JPanel {
             return;
         }
 
+        // 비밀번호는 User 객체 생성 시 암호화됨
         db.addUser(new User(id, pw));
-        JOptionPane.showMessageDialog(this, "회원가입 성공!");
+        JOptionPane.showMessageDialog(this, "회원가입 성공! 비밀번호가 암호화되어 저장되었습니다.");
         SwingUtilities.getWindowAncestor(this).dispose(); // 창 닫기
     }
 

@@ -8,6 +8,7 @@ public class UserDatabase {
 
     private UserDatabase() {
         users = new ArrayList<>();
+        // 테스트 계정 추가 (암호화된 비밀번호로 저장됨)
         users.add(new User("test", "1234")); 
     }
 
@@ -17,7 +18,7 @@ public class UserDatabase {
 
     public boolean isValidUser(String id, String password) {
         for (User user : users) {
-            if (user.getId().equals(id) && user.getPassword().equals(password)) {
+            if (user.getId().equals(id) && user.verifyPassword(password)) {
                 return true;
             }
         }
